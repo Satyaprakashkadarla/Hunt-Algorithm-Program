@@ -1,0 +1,24 @@
+def hunt_algorithm(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high and target >= arr[low] and target <= arr[high]:
+        mid = low + ((target - arr[low]) * (high - low)) // (arr[high] - arr[low])
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+# Example usage:
+arr = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+target = 12
+result_index = hunt_algorithm(arr, target)
+if result_index != -1:
+    print(f"Target {target} found at index {result_index}.")
+else:
+    print(f"Target {target} not found in the array.")
